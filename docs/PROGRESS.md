@@ -6,7 +6,7 @@
 
 ## Estado actual
 **Fase:** Setup / Inicialización  
-**Última actualización:** 21 Abril 2026
+**Última actualización:** 21 Abril 2026 (sesión 3)
 
 ---
 
@@ -24,17 +24,26 @@
   - Estructura de carpetas: Controllers/, Services/, Models/, DTOs/, Data/, Middleware/
   - `.env.example` y `appsettings.Development.json` creados con estructura de keys
   - `Program.cs` limpio con Authentication + Authorization + Controllers configurados
+- Base de datos Supabase configurada
+  - 9 tablas creadas en schema `public` (profiles, entrenadores, clientes, ejercicios, rutinas, rutina_ejercicios, rutinas_asignadas, sesiones, sesion_ejercicios)
+  - RLS habilitado en todas las tablas con policies para coach y client
+  - Trigger `on_auth_user_created` activo (crea profile automáticamente al registrarse)
+- Cliente Supabase inicializado en mobile (`mobile/src/services/supabase.ts`)
+  - AsyncStorage como storage para persistir sesión entre reinicios
+  - `autoRefreshToken: true`, `persistSession: true`, `detectSessionInUrl: false`
+- Tipos TypeScript del schema de BD definidos (`mobile/src/types/database.types.ts`)
+  - 9 interfaces: Profile, Cliente, Entrenador, Ejercicio, Rutina, RutinaEjercicio, RutinaAsignada, Sesion, SesionEjercicio
+  - Nombres y tipos exactos según `DATA_MODELS.md`
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
 
 ## ⬜ Próximos pasos (en orden)
 1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
-2. Crear proyecto en Supabase y ejecutar el schema SQL de `DATA_MODELS.md`
-3. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
+2. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
+3. Implementar Auth (Login/Registro) en mobile usando el cliente Supabase
 4. Conectar .NET con Supabase PostgreSQL (connection string en `appsettings.Development.json`)
-5. Implementar Auth (Login/Registro) en mobile + backend
-6. Convertir pantalla de Perfil de React Web → React Native
+5. Convertir pantalla de Perfil de React Web → React Native
 
 ---
 

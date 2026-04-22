@@ -85,9 +85,11 @@
 | Proyecto Expo inicializado | ✅ | `npx create-expo-app` con TypeScript template |
 | NativeWind configurado | 🔄 | Instalado; falta tailwind.config.js y babel.config.js |
 | React Navigation configurado (Stack + Tabs) | ⬜ | |
-| Supabase proyecto creado y tablas creadas | ⬜ | Usar `DATA_MODELS.md` como base |
-| RLS policies configuradas en Supabase | ⬜ | |
+| Supabase proyecto creado y tablas creadas | ✅ | 9 tablas creadas desde `schema.sql` |
+| RLS policies configuradas en Supabase | ✅ | RLS activo + policies en todas las tablas + trigger `on_auth_user_created` |
 | Proyecto .NET 8 inicializado | ✅ | Web API con EF Core, Npgsql, Swagger, JWT. Estructura Controllers/Services/Models/DTOs/Data/Middleware |
+| Cliente Supabase inicializado en mobile | ✅ | `services/supabase.ts` con AsyncStorage, autoRefreshToken, persistSession |
+| Tipos TypeScript de BD definidos | ✅ | 9 interfaces en `types/database.types.ts` — nombres exactos del schema |
 | Conexión .NET ↔ Supabase PostgreSQL | ⬜ | |
 | Railway deployment del backend | ⬜ | |
 | Variables de entorno configuradas | ✅ | `.env` y `.env.example` en mobile y backend |

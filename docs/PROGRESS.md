@@ -5,8 +5,8 @@
 ---
 
 ## Estado actual
-**Fase:** Auth / Navegación  
-**Última actualización:** 21 Abril 2026 (sesión 6)
+**Fase:** Perfil Cliente  
+**Última actualización:** 21 Abril 2026 (sesión 7)
 
 ---
 
@@ -54,15 +54,21 @@
   - `mobile/src/services/profileService.ts` — `updateAvatarId(userId, avatarId)` actualiza `profiles.avatar_id` en Supabase
   - `mobile/src/screens/auth/AvatarPickerScreen.tsx` — grilla 4×5, placeholders de color sólido, borde accent al seleccionar, botón "Continuar" guarda en BD
   - `mobile/src/navigation/RootNavigator.tsx` — tercer branch: sesión + `avatarId null` → AvatarPicker
+- Pantalla de Perfil cliente + Logout (sesión 7)
+  - `mobile/src/types/client.types.ts` — interfaces `ClientProfile`, `ClientStats`, `EditableClientFields`
+  - `mobile/src/components/AvatarImage.tsx` — componente reutilizable de avatar (placeholder de color, misma paleta que AvatarPickerScreen)
+  - `mobile/src/services/profileService.ts` — agregado `updateClientData()`: actualiza `peso_kg`, `estatura_cm`, `objetivo` e `imc` calculado en `clientes`
+  - `mobile/src/hooks/useClientProfile.ts` — fetch con JOIN `profiles → clientes`, stats desde `sesiones` (total, racha, logros); `update()` optimista
+  - `mobile/src/screens/client/ProfileScreen.tsx` — pantalla completa: header animado, datos físicos, stats de actividad, badges de objetivo activo, modal de edición bottom-sheet, botón logout
+  - `mobile/src/navigation/AppNavigator.tsx` — tab Perfil conectado a `ProfileScreen`; íconos `Ionicons` en todas las tabs
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
 
 ## ⬜ Próximos pasos (en orden)
 1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
-2. Agregar botón de Logout en la app (acción ya existe en `authStore.signOut`)
-3. Convertir pantalla de Perfil de React Web → React Native (primer componente Figma → RN)
-4. Reemplazar placeholders de color en AvatarPickerScreen con imágenes reales (`assets/avatars/avatar_1.png` … `avatar_20.png`)
+2. Reemplazar placeholders de color en `AvatarImage` y `AvatarPickerScreen` con imágenes reales (`assets/avatars/avatar_1.png` … `avatar_20.png`)
+3. Pantalla Inicio cliente: ver rutina del día asignada (siguiente en orden de desarrollo MVP)
 
 ---
 

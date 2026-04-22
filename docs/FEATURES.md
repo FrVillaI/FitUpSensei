@@ -11,7 +11,7 @@
 | Login con Google OAuth | ⬜ | Supabase Auth + Expo |
 | Registro (email + password) | ✅ | Selección de rol (Coach/Cliente) + metadatos en signUp |
 | Selección de avatar (20 opciones) | ✅ | AvatarPickerScreen con placeholders de color sólido; guarda en `profiles.avatar_id`; flujo post-registro automático |
-| Logout | ⬜ | Acción `signOut` en store, falta botón en UI |
+| Logout | ✅ | Botón en `ProfileScreen` (tab Perfil cliente) |
 | Refresh token automático | ✅ | `autoRefreshToken: true` + `onAuthStateChange` en authStore |
 
 ---
@@ -19,10 +19,10 @@
 ## 👤 Cliente — Perfil
 | Feature | Estado | Notas |
 |---|---|---|
-| Ver perfil (nombre, avatar, stats) | ⬜ | Diseño listo en Figma/React Web → convertir a RN |
-| Editar datos físicos (peso, altura, etc.) | ⬜ | |
-| Ver logros desbloqueados | ⬜ | |
-| Ver racha de días activos | ⬜ | |
+| Ver perfil (nombre, avatar, stats) | ✅ | `ProfileScreen`: avatar (`AvatarImage`), nombre, apellido, objetivo, datos físicos, stats de actividad |
+| Editar datos físicos (peso, altura, etc.) | ✅ | Modal bottom-sheet en `ProfileScreen`; actualiza `clientes` (peso_kg, estatura_cm, objetivo, imc) en Supabase |
+| Ver logros desbloqueados | ✅ | Milestone: 1 logro cada 10 entrenamientos completados; calculado en `useClientProfile` |
+| Ver racha de días activos | ✅ | Calculado desde `sesiones.fecha` en `useClientProfile`; días consecutivos hasta hoy |
 
 ## 🏋️ Cliente — Rutinas
 | Feature | Estado | Notas |
@@ -93,7 +93,7 @@
 | Conexión .NET ↔ Supabase PostgreSQL | ✅ | AppDbContext + 9 modelos EF Core + JWT Bearer + SupabaseAuthMiddleware |
 | Railway deployment del backend | ⬜ | |
 | Variables de entorno configuradas | ✅ | `.env` y `.env.example` en mobile y backend |
-| Diseño Figma (React Web) convertido a RN | ⬜ | Pantalla de Perfil como primera prueba |
+| Diseño Figma (React Web) convertido a RN | ✅ | `ProfileScreen` convertida: `div`→`View`, `motion/react`→`reanimated FadeInDown`, `className`→`StyleSheet` |
 
 ---
 

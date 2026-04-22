@@ -12,7 +12,6 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import AvatarImage from '../../components/AvatarImage';
 import { useClientProfile } from '../../hooks/useClientProfile';
@@ -81,7 +80,7 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
 
         {/* Header: avatar + nombre + objetivo */}
-        <Animated.View entering={FadeInDown.delay(0).duration(400)} style={styles.header}>
+        <View style={styles.header}>
           <AvatarImage avatarId={profile?.avatar_id ?? null} size={96} />
           <Text style={styles.name}>{fullName}</Text>
           {profile?.objetivo ? (
@@ -91,10 +90,10 @@ export default function ProfileScreen() {
             <Ionicons name="pencil-outline" size={15} color="#3B82F6" />
             <Text style={styles.editButtonText}>Editar perfil</Text>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
 
         {/* Datos físicos */}
-        <Animated.View entering={FadeInDown.delay(100).duration(400)} style={styles.card}>
+        <View style={styles.card}>
           <Text style={styles.sectionLabel}>DATOS FÍSICOS</Text>
           <View style={styles.statsRow}>
             <View style={styles.statCol}>
@@ -118,10 +117,10 @@ export default function ProfileScreen() {
               <Text style={styles.statUnit}>Edad</Text>
             </View>
           </View>
-        </Animated.View>
+        </View>
 
         {/* Stats de actividad */}
-        <Animated.View entering={FadeInDown.delay(200).duration(400)} style={styles.activityRow}>
+        <View style={styles.activityRow}>
           <View style={[styles.activityCard, { borderColor: '#3B82F630' }]}>
             <View style={[styles.iconCircle, { backgroundColor: '#3B82F615' }]}>
               <Ionicons name="trending-up" size={20} color="#3B82F6" />
@@ -143,10 +142,10 @@ export default function ProfileScreen() {
             <Text style={styles.activityValue}>{stats.achievements}</Text>
             <Text style={styles.activityLabel}>Logros</Text>
           </View>
-        </Animated.View>
+        </View>
 
         {/* Objetivos activos (badges) */}
-        <Animated.View entering={FadeInDown.delay(300).duration(400)} style={styles.card}>
+        <View style={styles.card}>
           <Text style={styles.sectionLabel}>OBJETIVOS ACTIVOS</Text>
           <View style={styles.badgesRow}>
             {OBJETIVO_OPTIONS.map((op) => {
@@ -163,15 +162,15 @@ export default function ProfileScreen() {
               );
             })}
           </View>
-        </Animated.View>
+        </View>
 
         {/* Logout */}
-        <Animated.View entering={FadeInDown.delay(400).duration(400)}>
+        <View>
           <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
             <Ionicons name="log-out-outline" size={18} color="#EF4444" />
             <Text style={styles.logoutText}>Cerrar sesión</Text>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
 
       </ScrollView>
 

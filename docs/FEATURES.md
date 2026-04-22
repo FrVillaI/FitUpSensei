@@ -87,10 +87,10 @@
 | React Navigation configurado (Stack + Tabs) | ⬜ | |
 | Supabase proyecto creado y tablas creadas | ⬜ | Usar `DATA_MODELS.md` como base |
 | RLS policies configuradas en Supabase | ⬜ | |
-| Proyecto .NET 8 inicializado | ⬜ | `dotnet new webapi` |
+| Proyecto .NET 8 inicializado | ✅ | Web API con EF Core, Npgsql, Swagger, JWT. Estructura Controllers/Services/Models/DTOs/Data/Middleware |
 | Conexión .NET ↔ Supabase PostgreSQL | ⬜ | |
 | Railway deployment del backend | ⬜ | |
-| Variables de entorno configuradas | ✅ | `.env` y `.env.example` creados en mobile; backend pendiente |
+| Variables de entorno configuradas | ✅ | `.env` y `.env.example` en mobile y backend |
 | Diseño Figma (React Web) convertido a RN | ⬜ | Pantalla de Perfil como primera prueba |
 
 ---

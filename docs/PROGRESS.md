@@ -19,6 +19,11 @@
 - Estructura de carpetas `mobile/src/` creada (screens, components, hooks, store, services, types, navigation)
 - `.env` y `.env.example` creados en `/mobile`
 - `.gitignore` raíz creado (excluye `.env` y `node_modules/`)
+- Proyecto .NET 8 Web API inicializado (`backend/FitUpSensei.API/`)
+  - Paquetes: Npgsql.EFCore 8.0.11, EFCore.Design 8.0.11, Swashbuckle 6.9.0, JwtBearer 8.0.11
+  - Estructura de carpetas: Controllers/, Services/, Models/, DTOs/, Data/, Middleware/
+  - `.env.example` y `appsettings.Development.json` creados con estructura de keys
+  - `Program.cs` limpio con Authentication + Authorization + Controllers configurados
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
@@ -27,15 +32,14 @@
 1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
 2. Crear proyecto en Supabase y ejecutar el schema SQL de `DATA_MODELS.md`
 3. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
-4. Crear proyecto .NET 8 Web API: `dotnet new webapi -n FitUpSensei.API`
-5. Conectar .NET con Supabase PostgreSQL (connection string)
-6. Implementar Auth (Login/Registro) en mobile + backend
-7. Convertir pantalla de Perfil de React Web → React Native
+4. Conectar .NET con Supabase PostgreSQL (connection string en `appsettings.Development.json`)
+5. Implementar Auth (Login/Registro) en mobile + backend
+6. Convertir pantalla de Perfil de React Web → React Native
 
 ---
 
 ## 🐛 Problemas conocidos
-*(Agregar aquí cuando aparezcan)*
+- Npgsql latest (10.x) solo es compatible con .NET 10 — usar versión 8.x explícita para este proyecto
 
 ---
 
@@ -46,3 +50,4 @@
 | Abr 2026 | BD: Supabase (PostgreSQL) | Auth incluido, tier gratis, RLS nativo |
 | Abr 2026 | Mobile: Expo Managed | Sin emulador necesario, Expo Go en celular físico |
 | Abr 2026 | UUIDs en lugar de INT | Más seguro para multi-tenant, estándar en Supabase |
+| Abr 2026 | Npgsql 8.0.11 (no latest) | Npgsql 10.x solo soporta .NET 10; se fija versión 8.x para compatibilidad con net8.0 |

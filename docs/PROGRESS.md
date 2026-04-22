@@ -5,8 +5,8 @@
 ---
 
 ## Estado actual
-**Fase:** Setup / Inicialización  
-**Última actualización:** 21 Abril 2026 (sesión 4)
+**Fase:** Auth / Navegación  
+**Última actualización:** 21 Abril 2026 (sesión 5)
 
 ---
 
@@ -39,16 +39,24 @@
   - `AppDbContext` con 9 DbSet + precisiones `numeric` configuradas en `OnModelCreating`
   - `SupabaseAuthMiddleware` extrae el `sub` del JWT validado y lo expone en `HttpContext.Items["UserId"]`
   - `Program.cs` actualizado: DbContext con Npgsql, JWT Bearer con secret/URL de Supabase, Swagger con Security Definition JWT
+- Auth completo en mobile (sesión 5)
+  - `mobile/src/types/auth.types.ts` — tipos `UserRole`, `SignUpParams`, `AuthState`, `AuthActions`
+  - `mobile/src/store/authStore.ts` — Zustand store con `initialize`, `signIn`, `signUp`, `signOut`, `setSession` + mapeo de errores Supabase en español
+  - `mobile/src/screens/auth/LoginScreen.tsx` — email + password, validación local, link a registro
+  - `mobile/src/screens/auth/RegisterScreen.tsx` — nombre, apellido, email, password, confirm, toggle Coach/Cliente
+  - `mobile/src/navigation/AuthNavigator.tsx` — Stack: Login → Register
+  - `mobile/src/navigation/AppNavigator.tsx` — Bottom Tabs diferenciados por role (placeholders)
+  - `mobile/src/navigation/RootNavigator.tsx` — spinner mientras carga sesión, switch Auth/App según `session`
+  - `App.tsx` — conectado a `SafeAreaProvider` + `RootNavigator`
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
 
 ## ⬜ Próximos pasos (en orden)
-1. Rellenar `appsettings.Development.json` con credenciales reales de Supabase (ConnectionString, JwtSecret, Url)
-2. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
-3. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
-4. Implementar Auth (Login/Registro) en mobile usando el cliente Supabase
-5. Convertir pantalla de Perfil de React Web → React Native
+1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
+2. Agregar botón de Logout en la app (acción ya existe en `authStore.signOut`)
+3. Convertir pantalla de Perfil de React Web → React Native
+4. Selección de avatar al registrarse (20 opciones en `assets/`)
 
 ---
 

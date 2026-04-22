@@ -7,12 +7,12 @@
 ## 🔐 Autenticación (Ambos roles)
 | Feature | Estado | Notas |
 |---|---|---|
-| Login con email + password | ⬜ | Supabase Auth |
+| Login con email + password | ✅ | `supabase.auth.signInWithPassword()` + Zustand store |
 | Login con Google OAuth | ⬜ | Supabase Auth + Expo |
-| Registro (email + password) | ⬜ | Selección de rol al registrarse |
+| Registro (email + password) | ✅ | Selección de rol (Coach/Cliente) + metadatos en signUp |
 | Selección de avatar (20 opciones) | ⬜ | Avatares locales en assets/ |
-| Logout | ⬜ | |
-| Refresh token automático | ⬜ | Manejado por Supabase SDK |
+| Logout | ⬜ | Acción `signOut` en store, falta botón en UI |
+| Refresh token automático | ✅ | `autoRefreshToken: true` + `onAuthStateChange` en authStore |
 
 ---
 
@@ -84,7 +84,7 @@
 |---|---|---|
 | Proyecto Expo inicializado | ✅ | `npx create-expo-app` con TypeScript template |
 | NativeWind configurado | 🔄 | Instalado; falta tailwind.config.js y babel.config.js |
-| React Navigation configurado (Stack + Tabs) | ⬜ | |
+| React Navigation configurado (Stack + Tabs) | ✅ | AuthNavigator (Stack) + AppNavigator (Bottom Tabs) + RootNavigator |
 | Supabase proyecto creado y tablas creadas | ✅ | 9 tablas creadas desde `schema.sql` |
 | RLS policies configuradas en Supabase | ✅ | RLS activo + policies en todas las tablas + trigger `on_auth_user_created` |
 | Proyecto .NET 8 inicializado | ✅ | Web API con EF Core, Npgsql, Swagger, JWT. Estructura Controllers/Services/Models/DTOs/Data/Middleware |

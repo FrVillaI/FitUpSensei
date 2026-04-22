@@ -18,19 +18,23 @@ function mapSupabaseError(message: string): string {
   return 'Ocurrió un error. Intenta de nuevo';
 }
 
-async function fetchRole(userId: string): Promise<UserRole | null> {
+async function fetchProfile(userId: string): Promise<{ role: UserRole | null; avatarId: number | null }> {
   const { data } = await supabase
     .from('profiles')
-    .select('role')
+    .select('role, avatar_id')
     .eq('id', userId)
     .single();
-  return (data?.role as UserRole) ?? null;
+  return {
+    role: (data?.role as UserRole) ?? null,
+    avatarId: data?.avatar_id ?? null,
+  };
 }
 
 const useAuthStore = create<AuthState & AuthActions>((set) => ({
   user: null,
   session: null,
   role: null,
+  avatarId: null,
   isLoading: true,
 
   initialize: async () => {
@@ -39,18 +43,20 @@ const useAuthStore = create<AuthState & AuthActions>((set) => ({
     } = await supabase.auth.getSession();
 
     let role: UserRole | null = null;
+    let avatarId: number | null = null;
     if (session?.user) {
-      role = await fetchRole(session.user.id);
+      ({ role, avatarId } = await fetchProfile(session.user.id));
     }
 
-    set({ session, user: session?.user ?? null, role, isLoading: false });
+    set({ session, user: session?.user ?? null, role, avatarId, isLoading: false });
 
     supabase.auth.onAuthStateChange(async (_event, session) => {
       let role: UserRole | null = null;
+      let avatarId: number | null = null;
       if (session?.user) {
-        role = await fetchRole(session.user.id);
+        ({ role, avatarId } = await fetchProfile(session.user.id));
       }
-      set({ session, user: session?.user ?? null, role });
+      set({ session, user: session?.user ?? null, role, avatarId });
     });
   },
 
@@ -79,6 +85,10 @@ const useAuthStore = create<AuthState & AuthActions>((set) => ({
 
   setSession: (session) => {
     set({ session, user: session?.user ?? null });
+  },
+
+  setAvatarId: (id) => {
+    set({ avatarId: id });
   },
 }));
 

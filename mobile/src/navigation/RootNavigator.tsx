@@ -4,9 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import useAuthStore from '../store/authStore';
 import AuthNavigator from './AuthNavigator';
 import AppNavigator from './AppNavigator';
+import AvatarPickerScreen from '../screens/auth/AvatarPickerScreen';
 
 export default function RootNavigator() {
   const session = useAuthStore((s) => s.session);
+  const avatarId = useAuthStore((s) => s.avatarId);
   const isLoading = useAuthStore((s) => s.isLoading);
   const initialize = useAuthStore((s) => s.initialize);
 
@@ -24,7 +26,13 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer>
-      {session ? <AppNavigator /> : <AuthNavigator />}
+      {!session ? (
+        <AuthNavigator />
+      ) : avatarId === null ? (
+        <AvatarPickerScreen />
+      ) : (
+        <AppNavigator />
+      )}
     </NavigationContainer>
   );
 }

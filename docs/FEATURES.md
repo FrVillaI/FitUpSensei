@@ -10,7 +10,7 @@
 | Login con email + password | ✅ | `supabase.auth.signInWithPassword()` + Zustand store |
 | Login con Google OAuth | ⬜ | Supabase Auth + Expo |
 | Registro (email + password) | ✅ | Selección de rol (Coach/Cliente) + metadatos en signUp |
-| Selección de avatar (20 opciones) | ⬜ | Avatares locales en assets/ |
+| Selección de avatar (20 opciones) | ✅ | AvatarPickerScreen con placeholders de color sólido; guarda en `profiles.avatar_id`; flujo post-registro automático |
 | Logout | ⬜ | Acción `signOut` en store, falta botón en UI |
 | Refresh token automático | ✅ | `autoRefreshToken: true` + `onAuthStateChange` en authStore |
 

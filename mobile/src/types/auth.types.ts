@@ -14,6 +14,7 @@ export interface AuthState {
   user: User | null;
   session: Session | null;
   role: UserRole | null;
+  avatarId: number | null;
   isLoading: boolean;
 }
 
@@ -23,4 +24,5 @@ export interface AuthActions {
   signUp: (params: SignUpParams) => Promise<string | null>;
   signOut: () => Promise<void>;
   setSession: (session: Session | null) => void;
+  setAvatarId: (id: number) => void;
 }

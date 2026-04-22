@@ -6,7 +6,7 @@
 
 ## Estado actual
 **Fase:** Auth / Navegación  
-**Última actualización:** 21 Abril 2026 (sesión 5)
+**Última actualización:** 21 Abril 2026 (sesión 6)
 
 ---
 
@@ -48,6 +48,12 @@
   - `mobile/src/navigation/AppNavigator.tsx` — Bottom Tabs diferenciados por role (placeholders)
   - `mobile/src/navigation/RootNavigator.tsx` — spinner mientras carga sesión, switch Auth/App según `session`
   - `App.tsx` — conectado a `SafeAreaProvider` + `RootNavigator`
+- Selección de avatar completa (sesión 6)
+  - `mobile/src/types/auth.types.ts` — agregado `avatarId: number | null` a `AuthState` y `setAvatarId` a `AuthActions`
+  - `mobile/src/store/authStore.ts` — `fetchProfile()` trae `role` + `avatar_id` juntos; nuevo action `setAvatarId`
+  - `mobile/src/services/profileService.ts` — `updateAvatarId(userId, avatarId)` actualiza `profiles.avatar_id` en Supabase
+  - `mobile/src/screens/auth/AvatarPickerScreen.tsx` — grilla 4×5, placeholders de color sólido, borde accent al seleccionar, botón "Continuar" guarda en BD
+  - `mobile/src/navigation/RootNavigator.tsx` — tercer branch: sesión + `avatarId null` → AvatarPicker
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
@@ -55,8 +61,8 @@
 ## ⬜ Próximos pasos (en orden)
 1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
 2. Agregar botón de Logout en la app (acción ya existe en `authStore.signOut`)
-3. Convertir pantalla de Perfil de React Web → React Native
-4. Selección de avatar al registrarse (20 opciones en `assets/`)
+3. Convertir pantalla de Perfil de React Web → React Native (primer componente Figma → RN)
+4. Reemplazar placeholders de color en AvatarPickerScreen con imágenes reales (`assets/avatars/avatar_1.png` … `avatar_20.png`)
 
 ---
 

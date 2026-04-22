@@ -90,7 +90,7 @@
 | Proyecto .NET 8 inicializado | ✅ | Web API con EF Core, Npgsql, Swagger, JWT. Estructura Controllers/Services/Models/DTOs/Data/Middleware |
 | Cliente Supabase inicializado en mobile | ✅ | `services/supabase.ts` con AsyncStorage, autoRefreshToken, persistSession |
 | Tipos TypeScript de BD definidos | ✅ | 9 interfaces en `types/database.types.ts` — nombres exactos del schema |
-| Conexión .NET ↔ Supabase PostgreSQL | ⬜ | |
+| Conexión .NET ↔ Supabase PostgreSQL | ✅ | AppDbContext + 9 modelos EF Core + JWT Bearer + SupabaseAuthMiddleware |
 | Railway deployment del backend | ⬜ | |
 | Variables de entorno configuradas | ✅ | `.env` y `.env.example` en mobile y backend |
 | Diseño Figma (React Web) convertido a RN | ⬜ | Pantalla de Perfil como primera prueba |

@@ -6,7 +6,7 @@
 
 ## Estado actual
 **Fase:** Setup / Inicialización  
-**Última actualización:** 21 Abril 2026 (sesión 3)
+**Última actualización:** 21 Abril 2026 (sesión 4)
 
 ---
 
@@ -34,15 +34,20 @@
 - Tipos TypeScript del schema de BD definidos (`mobile/src/types/database.types.ts`)
   - 9 interfaces: Profile, Cliente, Entrenador, Ejercicio, Rutina, RutinaEjercicio, RutinaAsignada, Sesion, SesionEjercicio
   - Nombres y tipos exactos según `DATA_MODELS.md`
+- Backend .NET conectado con Supabase PostgreSQL
+  - 9 modelos EF Core en `Models/` con mapeo snake_case explícito (`[Table]`, `[Column]`)
+  - `AppDbContext` con 9 DbSet + precisiones `numeric` configuradas en `OnModelCreating`
+  - `SupabaseAuthMiddleware` extrae el `sub` del JWT validado y lo expone en `HttpContext.Items["UserId"]`
+  - `Program.cs` actualizado: DbContext con Npgsql, JWT Bearer con secret/URL de Supabase, Swagger con Security Definition JWT
 
 ## 🔄 En progreso
 - Configurar NativeWind (falta `tailwind.config.js` y actualizar `babel.config.js`)
 
 ## ⬜ Próximos pasos (en orden)
-1. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
-2. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
-3. Implementar Auth (Login/Registro) en mobile usando el cliente Supabase
-4. Conectar .NET con Supabase PostgreSQL (connection string en `appsettings.Development.json`)
+1. Rellenar `appsettings.Development.json` con credenciales reales de Supabase (ConnectionString, JwtSecret, Url)
+2. Terminar configuración de NativeWind (`tailwind.config.js` + `babel.config.js` + `metro.config.js`)
+3. Configurar React Navigation (Stack + Bottom Tabs) en `mobile/src/navigation/`
+4. Implementar Auth (Login/Registro) en mobile usando el cliente Supabase
 5. Convertir pantalla de Perfil de React Web → React Native
 
 ---
